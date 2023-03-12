@@ -1,93 +1,93 @@
 <x-app-layout>
-       <div class="row">
-           <div class="col-lg-12 margin-tb">
-               <div class="pull-left">
-                   <h2>Edytuj Fakturę</h2>
-               </div>
-               <div class="pull-right">
-                   <a class="btn btn-primary" href="{{ route('invoice.index') }}"> Powrót</a>
-               </div>
-           </div>
-       </div>
-      
-       @if ($errors->any())
-           <div class="alert alert-danger">
-           There were some problems with your input.<br><br>
-               <ul>
-                   @foreach ($errors->all() as $error)
-                       <li>{{ $error }}</li>
-                   @endforeach
-               </ul>
-           </div>
-       @endif
+    <div class="px-10 py-3 text-xl ">
+        <div class="pull-right hover:text-blue-500">
+            <a class="btn btn-primary" href="{{ route('invoice.index') }}"> Powrót</a>
+        </div>
+    </div>
+    <div class="m-10 px-6 py-4 text-xl font-medium w-fit rounded-lg text-black border-2 border-black"> 
+        <div class="p-2 text-xl font-medium text-black">
+            <h2 class='font-large'>Edytuj fakturę</h2>
+        </div>  
+        @if ($errors->any())
+            <div class="alert alert-danger">
+            There were some problems with your input.<br><br>
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
      
        <form action="{{ route('invoice.update',$invoice->id) }}" method="POST">
            @csrf
            @method('PUT')
       
             <div class="row">
-               <div class="col-xs-12 col-sm-12 col-md-12">
+               <div class="p-2">
                    <div class="form-group">
                        <strong>Numer:</strong>
                        <input type="text" name="number" value="{{ $invoice->number }}" class="form-control" placeholder="Numer">
                    </div>
-               </div>
-               <div>
-                <div>
-                <strong>NIP Kontrahenta:</strong>
-                <select id="contractor_id" class="form-control @error('contractor_id') is-invalid @enderror" name="contractor_id" required>
-                    <option>Brak</option>
-                    @foreach($contractors as $contractor)
-                        <option value="{{$contractor->id}}">{{$contractor->nip}}</option>
-                    @endforeach
-                </select>
                 </div>
-            </div>
-                <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="p-2">
+                    <div>
+                        <strong>NIP Kontrahenta:</strong>
+                        <select id="contractor_id" class="form-control @error('contractor_id') is-invalid @enderror" name="contractor_id" required>
+                            <option>Brak</option>
+                            @foreach($contractors as $contractor)
+                                <option value="{{$contractor->id}}">{{$contractor->nip}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="p-2">
                     <div class="form-group">
                         <strong>Data wystawienia:</strong>
                         <input type="text" name="date_of_issue" value="{{ $invoice->date_of_issue }}" class="form-control" placeholder="Data wystawienia">
                     </div>
                 </div>
-               <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                 <button type="submit" class="btn btn-primary">Zatwierdź</button>
-               </div>
+                <div class="p-2 hover:text-green-500">
+                    <button type="submit" class="px-3 w-fit rounded-lg border-2 border-black">Zatwierdź</button>
+                </div>
+            </div>
         </form>
-
-    <table class="table table-bordered">
-         <tr>
-             <th>Nazwa towaru</th>
-             <th>Cena</th>
-             <th>Ilość</th>
-             <th>Podatek VAT</th>
-             <th>Wartość</th>
-             <th width="280px">Akcja</th>
-         </tr>
-
-               
-               @foreach ($invoice->items as $item)
-                <tr>
-                    <td>{{ $item->ware->symbol }}</td>
-                    <td>{{ $item->price }}</td>
-                    <td>{{ $item->quantity }}</td>
-                    <td>{{ ($item->price)*0.23 }}</td>
-                    <td>{{ ($item->quantity)*(($item->price)+(($item->price)*0.23)) }}</td>
-                    <td>
-                 <form action="{{ route('item.destroy',$item->id) }}" method="POST">
-     
-                     <a class="btn btn-primary" href="{{ route('item.edit',$item->id) }}">Edytuj</a>
-                     @csrf
-                     @method('DELETE')
-       
-                     <button type="submit" class="btn btn-danger">Usuń</button>
-                        </form> 
-             </td>
-                </tr>
-                @endforeach  
-                </table>
-
-               <div class="pull-right">
-                 <a class="btn btn-success" href="{{route('item.create')}}"> Dodaj pozycję</a>
-               </div>
-           </div>
+        <div class ="p-6">
+            <table class="text-sm w-fit text-white dark:text-black">
+                <div class="pull-right hover:text-blue-500">
+                    <a class="btn btn-success" href="{{route('item.create')}}"> + Dodaj pozycję</a>
+                </div> 
+                <thead class=" text-black uppercase  dark:bg-gray-700 dark:text-white border-2 border-black">
+                    <tr>
+                        <th class="px-6 py-3">Nazwa towaru</th>
+                        <th class="px-6 py-3">Cena</th>
+                        <th class="px-6 py-3">Ilość</th>
+                        <th class="px-6 py-3">Podatek VAT</th>
+                        <th class="px-6 py-3">Wartość</th>
+                        <th class="px-6 py-3">Akcja</th>
+                    </tr>
+                </thead> 
+                    
+                @foreach ($invoice->items as $item)
+                    <tr class="border-2 border-black hover:bg-gray-200">
+                        <td class="px-6 py-3">{{ $item->ware->symbol }}</td>
+                        <td class="px-6 py-3">{{ $item->price }}</td>
+                        <td class="px-6 py-3">{{ $item->quantity }}</td>
+                        <td class="px-6 py-3">{{ ($item->price)*0.23 }}</td>
+                        <td class="px-6 py-3">{{ ($item->quantity)*(($item->price)+(($item->price)*0.23)) }}</td>
+                        <td class="px-6 py-3">
+                            <form action="{{ route('item.destroy',$item->id) }}" method="POST">
+                
+                                <a class="btn btn-primary hover:text-blue-500" href="{{ route('item.edit',$item->id) }}">Edytuj</a>
+                                @csrf
+                                @method('DELETE')
+                
+                                <button type="submit" class="btn btn-danger hover:text-red-500">Usuń</button>
+                            </form> 
+                        </td>
+                    </tr>
+                @endforeach       
+            </table>
+        </div>
+        
 </x-app-layout>
