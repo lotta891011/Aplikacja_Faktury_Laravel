@@ -15,9 +15,9 @@ class InvoiceController extends Controller
      */
     public function index()
     {
-        $invoice = Invoice::latest()->paginate(5);
+        $invoices = Invoice::latest()->paginate(5);
     
-        return view('invoice.index',compact('invoice'))
+        return view('invoice.index',compact('invoices'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 

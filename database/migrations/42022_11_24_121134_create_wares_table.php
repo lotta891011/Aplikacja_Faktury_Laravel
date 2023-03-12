@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('ware', function (Blueprint $table) {
+        Schema::create('wares', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('symbol');
@@ -36,6 +36,6 @@ return new class extends Migration
             $table->dropForeign('items_ware_id_foreign');
             $table->dropColumn('ware_id');
         });
-        Schema::dropIfExists('ware');
+        Schema::dropIfExists('wares');
     }
 };

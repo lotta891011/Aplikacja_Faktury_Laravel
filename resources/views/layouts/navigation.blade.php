@@ -16,15 +16,12 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                     <x-nav-link :href="route('ware.index')" :active="request()->routeIs('ware.index')">
-                        {{ __('ware') }}
+                        {{ __('Wares') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('items.index')" :active="request()->routeIs('items.index')">
-                        {{ __('Items') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('contractors.index')" :active="request()->routeIs('contractors.index')">
+                    <x-nav-link :href="route('contractor.index')" :active="request()->routeIs('contractor.index')">
                         {{ __('Contractors') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('invoices.index')" :active="request()->routeIs('invoices.index')">
+                    <x-nav-link :href="route('invoice.index')" :active="request()->routeIs('invoice.index')">
                         {{ __('Invoices') }}
                     </x-nav-link>
                 </div>
@@ -83,15 +80,12 @@
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('ware.index')" :active="request()->routeIs('ware.index')">
-                {{ __('ware') }}
+                {{ __('Wares') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('items.index')" :active="request()->routeIs('items.index')">
-                {{ __('Items') }}
-            </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('contractors.index')" :active="request()->routeIs('contractors.index')">
+            <x-responsive-nav-link :href="route('contractor.index')" :active="request()->routeIs('contractor.index')">
                 {{ __('Contractors') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('invoices.index')" :active="request()->routeIs('invoices.index')">
+            <x-responsive-nav-link :href="route('invoice.index')" :active="request()->routeIs('invoice.index')">
                 {{ __('Invoices') }}
             </x-responsive-nav-link>
         </div>

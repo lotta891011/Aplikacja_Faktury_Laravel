@@ -16,9 +16,9 @@ class ItemController extends Controller
      */
     public function index()
     {
-        $item = Item::latest()->paginate(5);
+        $invoices = Invoice::latest()->paginate(5);
     
-        return view('invoice.index',compact('invoice'))
+        return view('invoice.index',compact('invoices'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -108,7 +108,6 @@ class ItemController extends Controller
     public function destroy(Item $item)
     {
         $item->delete();
-        
     
         return redirect()->route('invoice.index')
                         ->with('success','Pozycja usunięta pomyślnie');

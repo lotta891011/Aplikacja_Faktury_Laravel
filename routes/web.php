@@ -21,13 +21,13 @@ use App\Http\Controllers\ItemController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::resource('contractors', ContractorController::class)
+Route::resource('contractor', ContractorController::class)
     ->middleware(['auth', 'verified']);
 
-Route::resource('items', ItemController::class)
+Route::resource('item', ItemController::class)
     ->middleware(['auth', 'verified']);
 
-Route::resource('invoices', InvoiceController::class)
+Route::resource('invoice', InvoiceController::class)
     ->middleware(['auth', 'verified']);
 
 Route::resource('ware', WareController::class)

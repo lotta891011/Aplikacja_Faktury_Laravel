@@ -16,7 +16,7 @@ class ContractorController extends Controller
     {
         $contractor = Contractor::latest()->paginate(5);
     
-        return view('contractors.index',compact('contractor'))
+        return view('contractor.index',compact('contractor'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -87,7 +87,7 @@ class ContractorController extends Controller
     
         $contractor->update($request->all());
     
-        return redirect()->route('contractors.index')
+        return redirect()->route('contractor.index')
                         ->with('success','Kontrahent zaktualizowany pomyślnie.');
     }
 
