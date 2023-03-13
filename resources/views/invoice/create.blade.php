@@ -46,7 +46,7 @@
                     </div>
                 </div>
                 <div class="p-2 hover:text-green-500 text-center">
-                        <button type="submit" class="btn btn-primary">Zatwierdź</button>
+                    <button type="submit" class="btn btn-primary">Zatwierdź</button>
                 </div>
             </div>
             

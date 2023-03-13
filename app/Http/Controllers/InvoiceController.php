@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Invoice;
 use App\Models\Contractor;
+use App\Models\Ware;
+use App\Models\Item;
 use Illuminate\Http\Request;
 
 class InvoiceController extends Controller
@@ -71,7 +73,9 @@ class InvoiceController extends Controller
     public function edit(Invoice $invoice)
     {
         return view('invoice.edit',compact('invoice'),[
-            'contractors' => Contractor::all()
+            'contractors' => Contractor::all(),
+            'wares' => Ware::all(),
+            'items' => Item::all()
         ]);
     }
 
