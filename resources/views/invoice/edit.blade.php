@@ -4,7 +4,7 @@
             <a class="btn btn-primary" href="{{ route('invoice.index') }}"> Powrót</a>
         </div>
     </div>
-    <div class="m-10 px-6 py-4 text-xl font-medium w-fit rounded-lg text-black border-2 border-black"> 
+    <div class="m-10 px-6 py-4 text-xl font-medium rounded-lg text-black border-2 border-black"> 
         <div class="p-2 text-xl font-medium text-black">
             <h2 class='font-large'>Edytuj fakturę</h2>
         </div>  
@@ -52,8 +52,8 @@
                 </div>
             </div>
         </form>
-        <div class ="p-6">
-            <table class="text-sm w-fit text-white dark:text-black">
+        <div class="p-6">
+            <table class="text-sm  text-white dark:text-black w-full">
                 @if ($message = Session::get('success'))
                 <div class="text-green-500 py-2">
                     <p>{{ $message }}</p>
@@ -62,14 +62,14 @@
                 <div class="pull-right hover:text-blue-500">
                     <button onclick="addElement()">Dodaj pozycję</button>
                 </div> 
-                <thead class="text-black uppercase  dark:bg-gray-700 dark:text-white border-2 border-black">
+                <thead class="text-black uppercase  dark:bg-gray-700 dark:text-white">
                     <tr>
-                        <th class="px-6 py-3">Nazwa towaru</th>
-                        <th class="px-6 py-3">Cena</th>
-                        <th class="px-6 py-3">Ilość</th>
-                        <th class="px-6 py-3">Podatek VAT</th>
-                        <th class="px-6 py-3">Wartość</th>
-                        <th class="px-6 py-3">Akcja</th>
+                        <th class="px-6 py-3 border-2 border-black">Nazwa towaru</th>
+                        <th class="px-6 py-3 border-2 border-black ">Cena</th>
+                        <th class="px-6 py-3 border-2 border-black ">Ilość</th>
+                        <th class="px-6 py-3 border-2 border-black w-1/12">Podatek VAT</th>
+                        <th class="px-6 py-3 border-2 border-black w-1/12">Wartość</th>
+                        <th class="px-6 py-3 border-2 border-black w-1/12">Akcja</th>
                     </tr>
                 </thead> 
                 <?php $sum_quantity = 0?>
@@ -77,12 +77,12 @@
                 <?php $sum_value = 0; ?>
                 @foreach ($invoice->items as $item)
                 <tr class="border-2 border-black hover:bg-gray-200">
-                    <td class="px-6 py-3">{{ $item->ware->symbol }}</td>
-                    <td class="px-6 py-3">{{ $item->price }}</td>
-                    <td class="px-6 py-3">{{ $item->quantity }}</td>
-                    <td class="px-6 py-3">{{ ($item->price)*0.23 }}</td>
-                    <td class="px-6 py-3">{{ ($item->quantity)*(($item->price)+(($item->price)*0.23)) }}</td>
-                    <td class="px-6 py-3">
+                    <td class="px-6 py-3 border-2 border-black">{{ $item->ware->symbol }}</td>
+                    <td class="px-6 py-3 border-2 border-black">{{ $item->price }}</td>
+                    <td class="px-6 py-3 border-2 border-black">{{ $item->quantity }}</td>
+                    <td class="px-6 py-3 border-2 border-black">{{ ($item->price)*0.23 }}</td>
+                    <td class="px-6 py-3 border-2 border-black">{{ ($item->quantity)*(($item->price)+(($item->price)*0.23)) }}</td>
+                    <td class="px-6 py-3 border-2 border-black">
                         <form action="{{ route('item.destroy',$item->id) }}" method="POST">
             
                             <a class="btn btn-primary hover:text-blue-500" href="{{ route('item.edit',$item->id) }}">Edytuj</a>
@@ -102,7 +102,7 @@
                 
                     @csrf
                     <tr id='element'class="hidden">
-                        <td>
+                        <td class="px-6 py-3 border-2 border-black w-2">
                             <select id="ware_id" class="form-control @error('ware_id') is-invalid @enderror" name="ware_id" required>
                                 <option>Brak</option>
                                 @foreach($wares as $ware)
@@ -110,21 +110,21 @@
                                 @endforeach
                             </select>
                         </td>
-                        <td>
+                        <td class="px-6 py-3 border-2 border-black">
                             <input type="text" name="price" class="form-control" placeholder="Cena">
                         </td>
-                        <td>
+                        <td class="px-6 py-3 border-2 border-black">
                             <input type="text" name="quantity" class="form-control" placeholder="Ilość">
                         </td>
-                        <td>
+                        <td class="px-6 py-3 border-2 border-black">
                             <div class="col-xs-12 col-sm-12 col-md-12 hidden">
                                 
                                 <input type="text" name="invoice_id" class="form-control" value="{{ $invoice->id }}">
                                 
                             </div>
                         </td>
-                        <td></td>
-                        <td>
+                        <td class="px-6 py-3 border-2 border-black"></td>
+                        <td class="px-6 py-3 border-2 border-black">
                             <button type="submit" class="btn btn-primary">Zatwierdź</button>
                         </td>
                     </tr> 
