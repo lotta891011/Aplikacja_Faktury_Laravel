@@ -54,6 +54,11 @@
         </form>
         <div class ="p-6">
             <table class="text-sm w-fit text-white dark:text-black">
+                @if ($message = Session::get('success'))
+                <div class="text-green-500 py-2">
+                    <p>{{ $message }}</p>
+                </div>
+                @endif
                 <div class="pull-right hover:text-blue-500">
                     <button onclick="addElement()">Dodaj pozycję</button>
                 </div> 

@@ -6,6 +6,7 @@ use App\Models\Item;
 use App\Models\Invoice;
 use App\Models\Ware;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class ItemController extends Controller
 {
@@ -50,7 +51,7 @@ class ItemController extends Controller
     
         Item::create($request->all());
      
-        return redirect()->route('invoice.index')
+        return Redirect::back()
                         ->with('success','Pozycja dodana pomyślnie.');
     }
 
@@ -95,7 +96,8 @@ class ItemController extends Controller
     
         $item->update($request->all());
     
-        return redirect()->route('invoice.index')
+        $invoice = $item->invoice;
+        return redirect('invoice/'.$invoice->id.'/edit')
                         ->with('success','Pozycja zaktualizowana pomyślnie');
     }
 
@@ -109,7 +111,7 @@ class ItemController extends Controller
     {
         $item->delete();
     
-        return redirect()->route('invoice.index')
+        return Redirect::back()
                         ->with('success','Pozycja usunięta pomyślnie');
     }
 }
